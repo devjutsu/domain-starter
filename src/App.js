@@ -330,7 +330,7 @@ const App = () => {
 				<div className="header-container">
 					<header>
 						<div className="left">
-							<p className="title">🥷Jutsu Domain </p>
+							<p className="title">🥷.jutsu Domain </p>
 						</div>
 
 						<div className="right">

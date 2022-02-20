@@ -32,7 +32,7 @@ header{
   margin: 0;
   font-size: 35px;
   font-weight: bold;
-  color: #770000;
+  color: #530404;
 }
 
 .subtitle {
@@ -237,7 +237,7 @@ input:focus {
   border-radius: 5px;
   margin: 10px 15px;
   font-size: 18px;
-  background-color: #9497ba;
+  background-color: #464da1;
   color: black;
   min-width: 150px;
   max-width: fit-content;
@@ -246,15 +246,15 @@ input:focus {
 
 /* Different background-colour for every nth mint-item */
 .mint-item:nth-child(2n) {
-  background-color: rgb(0, 86, 108);
+  background-color: rgb(14, 76, 92);
 }
 
 .mint-item:nth-child(3n) {
-  background-color: #880000;
+  background-color: #5c2727;
 }
 
 .mint-item:nth-child(5n) {
-  background-color: rgb(0, 100, 0);
+  background-color: rgb(29, 80, 29);
 }
 
 .link{
