@@ -4,7 +4,7 @@ import twitterLogo from './assets/twitter-logo.svg';
 import polygonLogo from './assets/polygonlogo.png';
 import ethLogo from './assets/ethlogo.png';
 import { networks } from './utils/networks.js';
-import samuraiii from './assets/samuraiii.jpg';
+import samuraiii from './assets/nft.svg';
 import { ethers } from "ethers";
 import contractAbi from './utils/contractABI.json';
 
@@ -330,8 +330,7 @@ const App = () => {
 				<div className="header-container">
 					<header>
 						<div className="left">
-							<p className="title">🥷Jutsu Name Service </p>
-							<p className="subtitle">Go blockchain </p>
+							<p className="title">🥷Jutsu Domain </p>
 						</div>
 
 						<div className="right">

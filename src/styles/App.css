@@ -32,12 +32,12 @@ header{
   margin: 0;
   font-size: 35px;
   font-weight: bold;
-  color: rgb(113, 0, 179);
+  color: #770000;
 }
 
 .subtitle {
   font-size: 25px;
-  color: rgb(113, 0, 179);
+  color: #880000;
 }
 
 .left{
@@ -92,15 +92,14 @@ header{
 .connect-wallet-button {
   background-image: linear-gradient(
     to right,
-    #ff8177 0%,
-    #ff867a 0%,
-    #ff8c7f 21%,
-    #f99185 52%,
-    #cf556c 78%,
-    #b12a5b 100%
+    #660000 0%,
+    #500000 21%,
+    #450000 52%,
+    #500000 78%,
+    #660000 100%
   );
   background-size: 200% 200%;
-  animation: gradient-animation 4s ease infinite;
+  animation: gradient-animation 4s both infinite;
 }
 
 .mint-button {
