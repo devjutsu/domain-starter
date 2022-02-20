@@ -4,7 +4,7 @@ import twitterLogo from './assets/twitter-logo.svg';
 import polygonLogo from './assets/polygonlogo.png';
 import ethLogo from './assets/ethlogo.png';
 import { networks } from './utils/networks.js';
-import samuraiii from './assets/nft.svg';
+import mainimg from './assets/nft.svg';
 import { ethers } from "ethers";
 import contractAbi from './utils/contractABI.json';
 
@@ -12,7 +12,7 @@ import contractAbi from './utils/contractABI.json';
 const TWITTER_HANDLE = 'devjutsu';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const tld = '.jutsu';
-const CONTRACT_ADDRESS = '0x62936C18e30Aa77792f8Bb3863a8EEf6bC06afF5';
+const CONTRACT_ADDRESS = '0xcF11045AC6B7Ff81cE7498575b5deAa5501EA8cD';
 
 const App = () => {
 	const [currentAccount, setCurrentAccount] = useState('');
@@ -35,7 +35,6 @@ const App = () => {
 			// Fancy method to request access to account.
 			const accounts = await ethereum.request({ method: "eth_requestAccounts" });
 
-			// Boom! This should print out public address once we authorize Metamask.
 			console.log("Connected", accounts[0]);
 			setCurrentAccount(accounts[0]);
 		} catch (error) {
@@ -64,6 +63,7 @@ const App = () => {
 		}
 
 		const chainId = await ethereum.request({ method: 'eth_chainId' });
+		console.log(chainId);
 		setNetwork(networks[chainId]);
 
 		ethereum.on('chainChanged', handleChainChanged);
@@ -76,7 +76,7 @@ const App = () => {
 	// Create a function to render if wallet is not connected yet
 	const renderNotConnectedContainer = () => (
 		<div className="connect-wallet-container">
-			<img src={samuraiii} alt="Batlin" />
+			<img src={mainimg} alt="devjutsu" />
 			<button onClick={connectWallet} className="cta-button connect-wallet-button">
 				Connect Wallet
 			</button>
@@ -84,10 +84,10 @@ const App = () => {
 	);
 
 	const renderInputForm = () => {
-		if (network !== 'Polygon Mumbai Testnet') {
+		if (network !== 'Polygon Mainnet') {
 			return (
 				<div className="connect-wallet-container">
-					<h2>Please switch to Polygon Mumbai Testnet</h2>
+					<h2>Please switch to Polygon Mainnet</h2>
 					<button className='cta-button mint-button' onClick={switchNetwork}>Click here to switch</button>
 				</div>
 
@@ -143,7 +143,7 @@ const App = () => {
 							return (
 								<div className="mint-item" key={index}>
 									<div className='mint-row'>
-										<a className="link" href={`https://testnets.opensea.io/assets/mumbai/${CONTRACT_ADDRESS}/${mint.id}`} target="_blank" rel="noopener noreferrer">
+										<a className="link" href={`https://opensea.io/assets/${CONTRACT_ADDRESS}/${mint.id}`} target="_blank" rel="noopener noreferrer">
 											<p className="underlined">{' '}{mint.name}{tld}{' '}</p>
 										</a>
 										{mint.owner.toLowerCase() === currentAccount.toLowerCase() ?
@@ -171,9 +171,7 @@ const App = () => {
 	// ------------------------------------------------------------------
 
 	const mintDomain = async () => {
-		// Don't run if the domain is empty
 		if (!domain) { return }
-		// Alert the user if the domain is too short
 		if (domain.length < 3) {
 			alert('Domain must be at least 3 characters long');
 			return;
@@ -188,20 +186,21 @@ const App = () => {
 				const signer = provider.getSigner();
 				const contract = new ethers.Contract(CONTRACT_ADDRESS, contractAbi.abi, signer);
 
-				console.log("Going to pop wallet now to pay gas...")
+				console.log("Going to pop wallet now to pay gas...");
+				console.log({CONTRACT_ADDRESS});
 				let tx = await contract.register(domain, { value: ethers.utils.parseEther(price) });
 				// Wait for the transaction to be mined
 				const receipt = await tx.wait();
 
 				// Check if the transaction was successfully completed
 				if (receipt.status === 1) {
-					console.log("Domain minted! https://mumbai.polygonscan.com/tx/" + tx.hash);
+					console.log("Domain minted! https://polygonscan.com/tx/" + tx.hash);
 
 					// Set the record for the domain
 					tx = await contract.setRecord(domain, record);
 					await tx.wait();
 
-					console.log("Record set! https://mumbai.polygonscan.com/tx/" + tx.hash);
+					console.log("Record set! https://polygonscan.com/tx/" + tx.hash);
 
 					setTimeout(() => {
 						fetchMints();
@@ -234,7 +233,7 @@ const App = () => {
 
 				let tx = await contract.setRecord(domain, record);
 				await tx.wait();
-				console.log("Record set https://mumbai.polygonscan.com/tx/" + tx.hash);
+				console.log("Record set https://polygonscan.com/tx/" + tx.hash);
 
 				fetchMints();
 				setRecord('');
@@ -251,7 +250,7 @@ const App = () => {
 			try {
 				await window.ethereum.request({
 					method: 'wallet_switchEthereumChain',
-					params: [{ chainId: '0x13881' }],
+					params: [{ chainId: '0x89' }],
 				});
 			} catch (error) {
 				if (error.code === 4902) {
@@ -260,15 +259,15 @@ const App = () => {
 							method: 'wallet_addEthereumChain',
 							params: [
 								{
-									chainId: '0x13881',
-									chainName: 'Polygon Mumbai Testnet',
-									rpcUrls: ['https://rpc-mumbai.matic.today/'],
+									chainId: '0x89',
+									chainName: 'Polygon Mainnet',
+									rpcUrls: ['https://polygon-rpc.com/'],
 									nativeCurrency: {
-										name: "Mumbai Matic",
+										name: "Polygon",
 										symbol: "MATIC",
 										decimals: 18
 									},
-									blockExplorerUrls: ["https://mumbai.polygonscan.com/"]
+									blockExplorerUrls: ["https://polygonscan.com/"]
 								},
 							],
 						});
@@ -318,7 +317,7 @@ const App = () => {
 
 	useEffect(() => {
 		checkIfWalletIsConnected();
-		if (network === 'Polygon Mumbai Testnet') {
+		if (network === 'Polygon Mainnet') {
 			fetchMints();
 		}
 	}, [currentAccount, network])
