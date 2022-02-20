@@ -2,7 +2,7 @@
   height: 100vh;
   background-color: #0d1116;
   text-align: center;
-  color: white;
+  color: rgba(255, 255, 255, 0.397);
 }
 
 p {
@@ -32,12 +32,12 @@ header{
   margin: 0;
   font-size: 35px;
   font-weight: bold;
-  color: white;
+  color: rgb(113, 0, 179);
 }
 
 .subtitle {
   font-size: 25px;
-  color: white;
+  color: rgb(113, 0, 179);
 }
 
 .left{
@@ -104,7 +104,7 @@ header{
 }
 
 .mint-button {
-  background: -webkit-linear-gradient(left, #a200d6, #ff6fdf);
+  background: -webkit-linear-gradient(left, #530000, #140083);
   font-size: 18px;
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
@@ -117,6 +117,10 @@ header{
   background: #550072;
   color: rgb(209, 209, 209);
   cursor: not-allowed;
+}
+
+.mint-button:hover {
+  background: rgb(113, 0, 179);
 }
 
 .mint-row{
@@ -237,15 +241,15 @@ input:focus {
 
 /* Different background-colour for every nth mint-item */
 .mint-item:nth-child(2n) {
-  background-color: lightblue;
+  background-color: rgb(0, 96, 128);
 }
 
 .mint-item:nth-child(3n) {
-  background-color: lightpink;
+  background-color: rgb(143, 0, 148);
 }
 
 .mint-item:nth-child(5n) {
-  background-color: lightgreen;
+  background-color: rgb(0, 117, 0);
 }
 
 .link{
