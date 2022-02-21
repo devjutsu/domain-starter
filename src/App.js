@@ -143,7 +143,7 @@ const App = () => {
 							return (
 								<div className="mint-item" key={index}>
 									<div className='mint-row'>
-										<a className="link" href={`https://opensea.io/assets/${CONTRACT_ADDRESS}/${mint.id}`} target="_blank" rel="noopener noreferrer">
+										<a className="link" href={`https://opensea.io/assets/matic/${CONTRACT_ADDRESS}/${mint.id}`} target="_blank" rel="noopener noreferrer">
 											<p className="underlined">{' '}{mint.name}{tld}{' '}</p>
 										</a>
 										{mint.owner.toLowerCase() === currentAccount.toLowerCase() ?
